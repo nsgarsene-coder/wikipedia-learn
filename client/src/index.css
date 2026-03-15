@@ -1,0 +1,230 @@
+/**
+ * index.css — Wikipedia Learn
+ * Design System: Archives Vivantes
+ * Palette: Crème encyclopédique, or doré, encre sombre
+ * Typographie: Playfair Display (titres) + Source Serif 4 (corps) + JetBrains Mono (données)
+ */
+
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+}
+
+/* ─── Wikipedia Learn Color System ─────────────────────────────────────────── */
+:root {
+  /* Gold — couleur primaire */
+  --wl-gold: oklch(0.72 0.12 75);
+  --wl-gold-light: oklch(0.80 0.14 78);
+  --wl-gold-pale: oklch(0.88 0.08 80);
+  --wl-gold-muted: oklch(0.88 0.08 80 / 0.4);
+
+  /* Encre — texte sombre */
+  --wl-ink: oklch(0.18 0.02 60);
+  --wl-ink-mid: oklch(0.35 0.02 65);
+  --wl-ink-light: oklch(0.52 0.02 65);
+
+  /* Parchemin — fonds */
+  --wl-parchment: oklch(0.96 0.015 80);
+  --wl-parchment-light: oklch(0.99 0.008 80);
+  --wl-parchment-mid: oklch(0.93 0.012 78);
+  --wl-parchment-border: oklch(0.86 0.02 75);
+
+  /* Statuts */
+  --wl-success: oklch(0.48 0.12 145);
+  --wl-error: oklch(0.50 0.20 25);
+
+  /* Tailwind overrides */
+  --primary: oklch(0.72 0.12 75);
+  --primary-foreground: oklch(0.18 0.02 60);
+  --radius: 0.75rem;
+  --background: oklch(0.96 0.015 80);
+  --foreground: oklch(0.18 0.02 60);
+  --card: oklch(0.99 0.008 80);
+  --card-foreground: oklch(0.18 0.02 60);
+  --popover: oklch(0.99 0.008 80);
+  --popover-foreground: oklch(0.18 0.02 60);
+  --secondary: oklch(0.93 0.012 78);
+  --secondary-foreground: oklch(0.35 0.02 65);
+  --muted: oklch(0.93 0.012 78);
+  --muted-foreground: oklch(0.52 0.02 65);
+  --accent: oklch(0.88 0.08 80 / 0.4);
+  --accent-foreground: oklch(0.18 0.02 60);
+  --destructive: oklch(0.50 0.20 25);
+  --destructive-foreground: oklch(0.99 0.008 80);
+  --border: oklch(0.86 0.02 75);
+  --input: oklch(0.86 0.02 75);
+  --ring: oklch(0.72 0.12 75);
+  --chart-1: oklch(0.72 0.12 75);
+  --chart-2: oklch(0.48 0.12 145);
+  --chart-3: oklch(0.50 0.20 25);
+  --chart-4: oklch(0.62 0.15 200);
+  --chart-5: oklch(0.55 0.18 280);
+  --sidebar: oklch(0.99 0.008 80);
+  --sidebar-foreground: oklch(0.18 0.02 60);
+  --sidebar-primary: oklch(0.72 0.12 75);
+  --sidebar-primary-foreground: oklch(0.18 0.02 60);
+  --sidebar-accent: oklch(0.93 0.012 78);
+  --sidebar-accent-foreground: oklch(0.18 0.02 60);
+  --sidebar-border: oklch(0.86 0.02 75);
+  --sidebar-ring: oklch(0.72 0.12 75);
+}
+
+/* ─── Base Layer ────────────────────────────────────────────────────────────── */
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-family: 'Source Serif 4', Georgia, serif;
+  }
+  button:not(:disabled),
+  [role="button"]:not([aria-disabled="true"]),
+  [type="button"]:not(:disabled),
+  [type="submit"]:not(:disabled),
+  a[href],
+  select:not(:disabled) {
+    @apply cursor-pointer;
+  }
+}
+
+/* ─── Typography ────────────────────────────────────────────────────────────── */
+.font-display {
+  font-family: 'Playfair Display', Georgia, serif;
+}
+
+.font-body {
+  font-family: 'Source Serif 4', Georgia, serif;
+}
+
+.font-mono-data {
+  font-family: 'JetBrains Mono', 'Fira Code', monospace;
+}
+
+/* ─── Components ────────────────────────────────────────────────────────────── */
+@layer components {
+  .container {
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  .flex {
+    min-height: 0;
+    min-width: 0;
+  }
+
+  @media (min-width: 640px) {
+    .container {
+      padding-left: 1.5rem;
+      padding-right: 1.5rem;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .container {
+      padding-left: 2rem;
+      padding-right: 2rem;
+      max-width: 1280px;
+    }
+  }
+
+  /* XP Bar */
+  .xp-bar {
+    height: 3px;
+    background: oklch(0.86 0.02 75);
+    border-radius: 9999px;
+    overflow: hidden;
+  }
+
+  .xp-bar-fill {
+    height: 100%;
+    background: linear-gradient(90deg, oklch(0.72 0.12 75), oklch(0.80 0.14 78));
+    border-radius: 9999px;
+    transition: width 0.6s ease-out;
+  }
+
+  /* Gold separator line */
+  .gold-line {
+    height: 1px;
+    background: linear-gradient(90deg, transparent, oklch(0.72 0.12 75 / 0.4), transparent);
+  }
+
+  /* Mindmap node */
+  .mindmap-node {
+    border: 2px solid oklch(0.72 0.12 75 / 0.5);
+    box-shadow: 0 4px 16px oklch(0.72 0.12 75 / 0.12), 0 1px 4px oklch(0.18 0.02 60 / 0.08);
+    transition: all 0.2s ease;
+  }
+
+  .mindmap-node:hover:not(.locked) {
+    border-color: oklch(0.72 0.12 75);
+    box-shadow: 0 6px 24px oklch(0.72 0.12 75 / 0.25), 0 2px 8px oklch(0.18 0.02 60 / 0.1);
+    transform: translateY(-2px);
+  }
+
+  .mindmap-node.locked {
+    border-color: oklch(0.75 0.01 65 / 0.3);
+    box-shadow: none;
+    background: oklch(0.96 0.015 80);
+  }
+
+  /* Timer ring */
+  .timer-ring {
+    transform: rotate(-90deg);
+  }
+
+  .timer-ring-track {
+    fill: none;
+    stroke: oklch(0.86 0.02 75);
+    stroke-width: 3;
+  }
+
+  .timer-ring-fill {
+    fill: none;
+    stroke-width: 3;
+    stroke-linecap: round;
+    transition: stroke-dashoffset 1s linear, stroke 0.3s ease;
+  }
+}
